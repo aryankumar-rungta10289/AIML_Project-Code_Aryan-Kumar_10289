@@ -1,0 +1,19 @@
+%Create a simple Knowledge Base using facts, predicates, clauses, and goals (Student-Course Database)
+
+enrolled(alice, cs101).
+enrolled(bob, cs101).
+enrolled(alice, math201).
+enrolled(charlie, physics101).
+enrolled(bob, math201).
+
+classmates(Student1, Student2, Course) :-
+    enrolled(Student1, Course),
+    enrolled(Student2, Course),
+    Student1 \= Student2.
+
+% Query
+enrolled(alice, Course).
+
+% Output
+Course = cs101 
+Course = math201
