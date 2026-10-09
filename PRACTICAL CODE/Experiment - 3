@@ -1,0 +1,46 @@
+% Perform append, reverse, member search, and list length operations
+
+% 1. SEARCH FOR AN ELEMENT IN A LIST
+%    my_member(Element, List)
+% Base Case: Element is found at the head of the list.
+my_member(X, [X | _]).
+
+% Recursive Step: Search in the tail of the list.
+my_member(X, [_ | Tail]) :-
+    my_member(X, Tail).
+
+% 2. APPEND TWO LISTS
+%    my_append(List1, List2, ResultList)
+% Base Case: Appending an empty list to List2 gives List2.
+my_append([], List2, List2).
+
+% Recursive Step: Attach Head of List1 to the result of appending Tail to List2.
+my_append([Head | Tail], List2, [Head | ResultTail]) :-
+    my_append(Tail, List2, ResultTail).
+
+% 3. REVERSE A LIST
+%    my_reverse(List, ReversedList)
+% Base Case: Reversing an empty list gives an empty list.
+my_reverse([], []).
+
+% Recursive Step: Reverse the tail, then append the head at the end.
+my_reverse([Head | Tail], Reversed) :-
+    my_reverse(Tail, ReversedTail),
+    my_append(ReversedTail, [Head], Reversed).
+
+
+
+% Query And Output of Searching for and Element
+my_member(10, [1, 2, 3, 4, 5]).
+false.
+
+
+% Query and Output for Appending Two Lists
+my_append([1, 2, 3], [4, 5, 6], Result).
+Result = [1, 2, 3, 4, 5, 6].
+
+
+% Query And Output for Reversing A List
+my_reverse([10, 20, 30, 40], Reversed).
+Reversed = [40, 30, 20, 10].
+
