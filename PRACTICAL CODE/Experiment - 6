@@ -1,0 +1,25 @@
+% Implement Breadth-First Search (BFS) to find the shortest path in a graph
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(b, e).
+edge(c, f).
+
+dfs(Start, Goal, Path) :-
+    dfs_search(Start, Goal, [Start], RevPath),
+    reverse(RevPath, Path).
+
+dfs_search(Goal, Goal, _, [Goal]).
+
+dfs_search(Node, Goal, Visited, [Node | Path]) :-
+    edge(Node, Next),
+    \+ member(Next, Visited),                
+    dfs_search(Next, Goal, [Next | Visited], Path).
+
+% Query Code to Run
+dfs(a, f, Path).
+
+% Output 
+Path = [a, c, f].
+
+
