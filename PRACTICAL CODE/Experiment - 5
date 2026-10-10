@@ -1,0 +1,39 @@
+% Classify students as topper, average, and fail using rule-based reasoning
+student_marks(alice, 92).
+student_marks(bob, 78).
+student_marks(charlie, 45).
+student_marks(david, 32).
+student_marks(eva, 88).
+student_marks(frank, 55).
+
+failed(Student) :-
+    student_marks(Student, Marks),
+    Marks < 40.
+
+average_performer(Student) :-
+    student_marks(Student, Marks),
+    Marks >= 40,
+    Marks =< 84.
+
+topper(Student) :-
+    student_marks(Student, Marks),
+    Marks >= 85.
+
+% Query And Output For Topper
+topper(Student).
+
+Student = alice ;
+Student = eva.
+
+% Query And Output For Average Students 
+average_performer(Student).
+
+Student = bob ;
+Student = charlie ;
+Student = frank.
+
+% Query and Output for Failed Students 
+failed(Student).
+
+Student = david.
+
